@@ -67,8 +67,8 @@ export class UsersService {
         let mailTransporter = await nodemailer.createTransport({
             service: 'gmail',
             auth: {
-                user: fromEmail || 'shripadfalke198@gmail.com',
-                pass: 'mfhmrlkhsfczrviw'
+                user: fromEmail ,
+                pass: ''
             }
         });
         const otp1 = otp;
