@@ -5,6 +5,7 @@ import { LocalAuthGuard } from 'src/auth/guards/local.auth.guard';
 import { AuthenticatedGuard } from 'src/auth/guards/authenticated.guard';
 import { RoleGuard } from 'src/auth/guards/role.guard';
 import { Roles } from 'src/auth/roles decorator/roles.decorator';
+import { Param } from '@nestjs/common/decorators';
 
 @Controller('users')
 export class UsersController {
@@ -69,6 +70,14 @@ export class UsersController {
             msg :'user created successfully',
             result
         }
+    }
+
+    @Roles('dealer')
+    @UseGuards(AuthenticatedGuard,RoleGuard)
+    @Post('deleteuser/:id')
+    async delete(@Param('id') id:string){
+        const deleteduser = await this.usersService.deleteuser(id)
+        return deleteduser
     }
     
     @UseGuards(LocalAuthGuard)

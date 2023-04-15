@@ -86,4 +86,9 @@ export class UsersService {
             }
         });
     }
+
+    async deleteuser(id:string){
+        const user= await this.userModel.deleteOne({_id: new ObjectId(id)})
+        return user
+    }
 }
